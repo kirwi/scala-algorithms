@@ -2,6 +2,14 @@ package sorting
 
 object QuickSort:
   import Ordering.Implicits.*
+  
+  private def partitionFold[A](xs: List[A], pivot: A)(using Ordering[A]): (List[A], List[A], List[A]) =
+    xs.foldRight[(List[A], List[A], List[A])]((Nil, Nil, Nil))((p, tup) => {
+      val (ls, es, rs) = tup
+      if p < pivot then (p :: ls, es, rs)
+      else if p > pivot then (ls, es, p :: rs)
+      else (ls, p :: es, rs)
+    })
 
   def sort[A](xs: List[A])(using Ordering[A]): List[A] =
     xs match
@@ -25,11 +33,14 @@ object QuickSort:
   def foldSort[A](xs: List[A])(using Ordering[A]): List[A] = xs match
     case Nil | _ :: Nil => xs
     case pivot :: tail =>
-      val (left, equal, right) = tail.foldRight[(List[A], List[A], List[A])]((Nil, Nil, Nil))((p, tup) => {
-        val (ls, es, rs) = tup
-        if p < pivot then (p :: ls, es, rs)
-        else if p > pivot then (ls, es, p :: rs)
-        else (ls, p :: es, rs)
-      })
+      val (left, equal, right) = partitionFold(tail, pivot)
       foldSort(left) ++ equal ++ foldSort(right)
 
+  def sortAcc[A](xs: List[A])(using Ordering[A]): List[A] =
+    def go(xs: List[A], acc: List[A]): List[A] = xs match
+      case Nil => acc
+      case pivot :: tail =>
+        val (left, equal, right) = partitionFold(tail, pivot)
+        go(left, equal.foldRight(go(right, acc))(_ :: _))
+
+    go(xs, Nil)
