@@ -30,7 +30,7 @@ class QuickSortTest extends AnyFunSuite:
     assertResult(sortedNames)(QuickSort.foldSort(people).map(_.name))
   }
 
-  test("acculator version of quickSort is stable") {
+  test("accumulator version of quickSort is stable") {
     assertResult(sortedNames)(QuickSort.sortAcc(people).map(_.name))
   }
 
