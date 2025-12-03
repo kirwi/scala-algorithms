@@ -70,4 +70,17 @@ object BinarySearch:
         if curr < target then go(mid+1, hi, idx)
         else go(lo, mid-1, mid)
 
-    go(0, xs.length -1, xs.length)
+    go(0, xs.length - 1, xs.length)
+
+  /** Find the starting index of the subsequence that is strictly bounded below by target. */
+  def upperBound[A](xs: IndexedSeq[A], target: A)(using Ordering[A]): Int =
+    @annotation.tailrec
+    def go(lo: Int, hi: Int, idx: Int): Int =
+      if lo > hi then idx
+      else
+        val mid = lo + (hi - lo)/2
+        val curr = xs(mid)
+        if curr <= target then go(mid+1, hi, idx)
+        else go(lo, mid-1, mid)
+
+    go(0, xs.length - 1, xs.length)
