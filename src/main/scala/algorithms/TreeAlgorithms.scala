@@ -156,3 +156,33 @@ object TreeAlgorithms:
       case Nil => (Empty, Nil)
 
     go(s.split(",").toList)._1
+
+  private def partitionByRoot[A](xs: List[A], root: A): (List[A], List[A], Int) =
+    def go(xs: List[A]): (List[A], List[A], Int) = xs match
+      case Nil => (Nil, Nil, 0)
+      case y :: ys =>
+        if y == root then (Nil, ys, 0)
+        else
+          val (l, r, len) = go(ys)
+          (y :: l, r, len + 1)
+
+    go(xs)
+
+  private def partitionPostorder[A](xs: List[A], len: Int): (List[A], List[A]) = xs match
+    case Nil => (Nil, Nil)
+    case y :: ys =>
+      if len > 0 then
+        val (l, r) = partitionPostorder(ys, len - 1)
+        (y :: l, r)
+      else (Nil, xs)
+
+  def inorderPostorder[A](inorder: List[A], postorder: List[A]): Tree[A] = inorder match
+    case Nil => Empty
+    case x :: Nil => Node(x, Empty, Empty)
+    case _ =>
+      val root = postorder.last
+      val (inLeft, inRight, len) = partitionByRoot(inorder, root)
+      val (postLeft, postRight) = partitionPostorder(postorder, len)
+      Node(root, inorderPostorder(inLeft, postLeft), inorderPostorder(inRight, postRight.init))
+
+
