@@ -86,7 +86,7 @@ object TreeAlgorithms:
       case _ => paths(l).map(v :: _) ++ paths(r).map(v :: _)
 
   def maxPathSum(tree: Tree[Int]): Int =
-    def go(t: Tree[Int]): (maxFull: Int, maxDown: Int) = t match
+    def go(t: Tree[Int]): (Int, Int) = t match
       case Empty => (Int.MinValue, Int.MinValue)
       case Node(v, l, r) =>
         val (fullL, downL) = go(l)
@@ -95,7 +95,7 @@ object TreeAlgorithms:
         val maxFullHere = fullL max fullR max (v + downL + downR)
         (maxFullHere, maxDownHere)
 
-    go(tree).maxFull
+    go(tree)._1
 
   def hasPathSum(tree: Tree[Int], target: Int): Boolean = tree match
     case Empty => false
