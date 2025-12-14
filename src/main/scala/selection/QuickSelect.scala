@@ -4,6 +4,7 @@ object QuickSelect:
   import Ordering.Implicits.*
   import Numeric.Implicits.*
 
+  @annotation.tailrec
   def select[A, W](
     xs: List[A],
     k: W
