@@ -1,8 +1,8 @@
-package datastructures
+package binarytree
 
 import org.scalacheck.{Gen, Arbitrary}
-import datastructures.Tree
-import datastructures.Tree.{Empty, Node}
+import binarytree.Tree
+import binarytree.Tree.{Empty, Node}
 
 object TreeGen:
   def genTree(maxDepth: Int): Gen[Tree[Int]] =

@@ -1,4 +1,4 @@
-package datastructures
+package orderstatistic.tree
 
 enum OrderStatisticTree[+A, M]:
   case Empty(m: M)

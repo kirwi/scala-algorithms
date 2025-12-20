@@ -1,8 +1,7 @@
-package orderstatistic
+package orderstatistic.tree
 
-import datastructures.OrderStatisticTree
-import datastructures.OrderStatisticTree.{Empty, Node}
-import orderstatistic.algebras.ResidualMonoid
+import algebras.ResidualMonoid
+import orderstatistic.tree.OrderStatisticTree.{Empty, Node}
 
 object Selection:
   @annotation.tailrec

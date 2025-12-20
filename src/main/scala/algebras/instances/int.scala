@@ -1,7 +1,6 @@
-package orderstatistic.algebras.instances
+package algebras.instances
 
-import orderstatistic.algebras.Monoid
-import orderstatistic.algebras.ResidualMonoid
+import algebras.{Monoid, ResidualMonoid}
 
 given Monoid[Int] with
   def combine(a: Int, b: Int): Int = a + b

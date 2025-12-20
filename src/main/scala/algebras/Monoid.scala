@@ -1,4 +1,4 @@
-package orderstatistic.algebras
+package algebras
 
 trait Monoid[M]:
   def combine(a: M, b:M): M

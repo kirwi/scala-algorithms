@@ -1,4 +1,4 @@
-package datastructures
+package binarytree
 
 enum Tree[+A]:
   case Empty

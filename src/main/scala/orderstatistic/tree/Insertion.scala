@@ -1,8 +1,7 @@
-package orderstatistic
+package orderstatistic.tree
 
-import datastructures.OrderStatisticTree
-import datastructures.OrderStatisticTree.{Empty, Node}
 import algebras.Monoid
+import OrderStatisticTree.{Empty, Node}
 
 object Insertion:
   import Ordering.Implicits.*

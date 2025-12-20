@@ -1,12 +1,11 @@
-package datastructures
+package binarytree
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import datastructures.Tree
-import datastructures.Tree.{Empty, Node}
-import algorithms.TreeAlgorithms
-import algorithms.TreeAlgorithms.*
+import binarytree.Tree
+import binarytree.Tree.{Empty, Node}
+import TreeAlgorithms.*
 
 class TreeAlgorithmsPropertySpec
   extends AnyFunSuite

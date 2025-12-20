@@ -1,7 +1,6 @@
-package algorithms
+package binarytree
 
-import datastructures.Tree
-import datastructures.Tree.{Empty, Node}
+import Tree.{Empty, Node}
 
 object TreeAlgorithms:
   def inorder[A](tree: Tree[A]): List[A] = tree match
